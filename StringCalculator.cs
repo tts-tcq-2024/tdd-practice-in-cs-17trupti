@@ -7,7 +7,15 @@ public class StringCalculator
             return 0;
         }
 
-        return -1; // Placeholder for future logic.
+        string[] numArray = numbers.Split(',');
+        int sum = 0;
+
+        foreach (string num in numArray)
+        {
+            sum += int.Parse(num);
+        }
+
+        return sum;
     }
 }
 
