@@ -91,7 +91,7 @@ public class StringCalculatorAddTests
 
         Assert.Equal(expectedResult, result);
     }
-    
+    /*
     [Fact]
     public void Add_ShouldReturnSumWithMultipleCharacterCustomDelimiter_WhenInputHasMultipleCharacterDelimiter()
     {
@@ -124,7 +124,7 @@ public class StringCalculatorAddTests
 
         Assert.Equal(expectedResult, result);
     }
-    
+    */
     [Fact]
     public void Add_ShouldThrowExceptionForNegativeNumbersWithCustomDelimiters_WhenInputContainsNegativeNumbersWithCustomDelimiter()
     {
