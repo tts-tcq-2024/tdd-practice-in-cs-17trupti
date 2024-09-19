@@ -5,7 +5,7 @@ using Xunit;
 public class StringCalculatorAddTests
 {
     [Fact]
-    public void ExpectZeroForEmptyInput()
+    public void Add_ShouldReturnZero_WhenInputIsEmpty()
     {
         int expectedResult = 0;
         string input = "";
@@ -16,7 +16,7 @@ public class StringCalculatorAddTests
     }
 
   [Fact]
-    public void ExpectZeroForSingleZero()
+    public void Add_ShouldReturnZero_WhenInputIsSingleZero()
     {
         int expectedResult = 0;
         string input = "0";
@@ -27,7 +27,7 @@ public class StringCalculatorAddTests
     }
 
   [Fact]
-    public void ExpectSumForTwoNumbers()
+    public void Add_ShouldReturnSumOfTwoNumbers_WhenInputHasTwoNumbersSeparatedByComma()
     {
         int expectedResult = 3;
         string input = "1,2";
@@ -38,7 +38,7 @@ public class StringCalculatorAddTests
     }
 
     [Fact]
-    public void ExpectExceptionForNegativeNumbers()
+    public void Add_ShouldThrowException_WhenInputContainsNegativeNumbers()
     {
         Assert.Throws<Exception>(() =>
         {
@@ -49,7 +49,7 @@ public class StringCalculatorAddTests
     }
 
     [Fact]
-    public void IgnoreNumbersGreaterThan1000()
+    public void Add_ShouldIgnoreNumbersGreaterThan1000_WhenInputContainsLargeNumbers()
     {
         int expectedResult = 1;
         string input = "1,1001";
@@ -60,7 +60,7 @@ public class StringCalculatorAddTests
     }
 
   [Fact]
-    public void ExpectSumWithNewlineDelimiter()
+    public void Add_ShouldReturnSumWithNewlineDelimiter_WhenInputHasNewlines()
     {
         int expectedResult = 6;
         string input = "1\n2,3";
@@ -71,7 +71,7 @@ public class StringCalculatorAddTests
     }
     
     [Fact]
-    public void ExpectSumWithCustomDelimiter()
+    public void Add_ShouldReturnSumWithCustomDelimiter_WhenInputHasCustomDelimiter()
     {
         int expectedResult = 3;
         string input = "//;\n1;2";
