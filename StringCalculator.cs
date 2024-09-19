@@ -11,21 +11,21 @@ public class StringCalculator
             return 0;
         }
 
-        return CalculateSum(PrepareNumbers(numbers));
+        return CalculateTotalSum(ExtractNumberStrings(numbers));
     }
 
-    private IEnumerable<string> PrepareNumbers(string numbers)
+    private IEnumerable<string> ExtractNumberStrings(string numbers)
     {
         if (numbers.StartsWith("//"))
         {
-            return GetNumbersWithCustomDelimiter(numbers);
+            return SplitByCustomDelimiter(numbers);
         }
         
         // Split input by default delimiters (comma and newline)
         return numbers.Split(new[] { ',', '\n' }, StringSplitOptions.None);
     }
 
-    private IEnumerable<string> GetNumbersWithCustomDelimiter(string numbers)
+    private IEnumerable<string> SplitByCustomDelimiter(string numbers)
     {
         // Extract custom delimiter
         int delimiterEndIndex = numbers.IndexOf('\n');
@@ -36,7 +36,7 @@ public class StringCalculator
         return numberPart.Split(new[] { delimiter }, StringSplitOptions.None);
     }
 
-    private int CalculateSum(IEnumerable<string> numbers)
+    private int CalculateTotalSum(IEnumerable<string> numbers)
     {
         List<int> negativeNumbers = new List<int>();
 
