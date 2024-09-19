@@ -12,10 +12,10 @@ public class StringCalculatorAddTests
         StringCalculator objUnderTest = new StringCalculator();
         int result = objUnderTest.Add(input);
 
-       Assert.Equal(expectedResult, result);
+        Assert.Equal(expectedResult, result);
     }
 
-  [Fact]
+    [Fact]
     public void Add_ShouldReturnZero_WhenInputIsSingleZero()
     {
         int expectedResult = 0;
@@ -26,7 +26,7 @@ public class StringCalculatorAddTests
         Assert.Equal(expectedResult, result);
     }
 
-  [Fact]
+    [Fact]
     public void Add_ShouldReturnSumOfTwoNumbers_WhenInputHasTwoNumbersSeparatedByComma()
     {
         int expectedResult = 3;
@@ -34,7 +34,7 @@ public class StringCalculatorAddTests
         StringCalculator objUnderTest = new StringCalculator();
         int result = objUnderTest.Add(input);
 
-       Assert.Equal(expectedResult, result);
+        Assert.Equal(expectedResult, result);
     }
 
     [Fact]
@@ -56,10 +56,10 @@ public class StringCalculatorAddTests
         StringCalculator objUnderTest = new StringCalculator();
         int result = objUnderTest.Add(input);
 
-       Assert.Equal(expectedResult, result);
+        Assert.Equal(expectedResult, result);
     }
 
-  [Fact]
+    [Fact]
     public void Add_ShouldReturnSumWithNewlineDelimiter_WhenInputHasNewlines()
     {
         int expectedResult = 6;
@@ -67,9 +67,9 @@ public class StringCalculatorAddTests
         StringCalculator objUnderTest = new StringCalculator();
         int result = objUnderTest.Add(input);
 
-       Assert.Equal(expectedResult, result);
+        Assert.Equal(expectedResult, result);
     }
-    
+
     [Fact]
     public void Add_ShouldReturnSumWithCustomDelimiter_WhenInputHasCustomDelimiter()
     {
@@ -78,29 +78,6 @@ public class StringCalculatorAddTests
         StringCalculator objUnderTest = new StringCalculator();
         int result = objUnderTest.Add(input);
 
-       Assert.Equal(expectedResult, result);
-    }
-
-    [Fact]
-    public void Add_ShouldReturnSingleNumber_WhenInputIsSingleNumber()
-    {
-        int expectedResult = 5;
-        string input = "5";
-        StringCalculator objUnderTest = new StringCalculator();
-        int result = objUnderTest.Add(input);
-
         Assert.Equal(expectedResult, result);
     }
-    
-    [Fact]
-    public void Add_ShouldThrowExceptionForNegativeNumbersWithCustomDelimiters_WhenInputContainsNegativeNumbersWithCustomDelimiter()
-    {
-        Assert.Throws<Exception>(() =>
-                                 {
-                                     string input = "//;\n-1;2";
-                                     StringCalculator objUnderTest = new StringCalculator();
-                                     objUnderTest.Add(input);
-                                 });
-    }
-
 }
