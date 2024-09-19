@@ -40,12 +40,11 @@ public class StringCalculatorAddTests
     [Fact]
     public void Add_ShouldThrowException_WhenInputContainsNegativeNumbers()
     {
-        Assert.Throws<Exception>(() =>
-        {
-            string input = "-1,2";
-            StringCalculator objUnderTest = new StringCalculator();
-            objUnderTest.Add(input);
-        });
+        string input = "-1,2";
+        StringCalculator objUnderTest = new StringCalculator();
+
+        var exception = Assert.Throws<Exception>(() => objUnderTest.Add(input));
+        Console.WriteLine($"Exception Message: {exception.Message}");
     }
 
     [Fact]
@@ -95,11 +94,14 @@ public class StringCalculatorAddTests
     [Fact]
     public void Add_ShouldThrowExceptionForNegativeNumbersWithCustomDelimiters_WhenInputContainsNegativeNumbersWithCustomDelimiter()
     {
-        Assert.Throws<Exception>(() =>
-                                 {
-                                     string input = "//;\n-1;2";
-                                     StringCalculator objUnderTest = new StringCalculator();
-                                     objUnderTest.Add(input);
-                                 });
+        string input = "//;\n-1;2";
+        StringCalculator objUnderTest = new StringCalculator();
+        
+        var exception = Assert.Throws<Exception>(() => objUnderTest.Add(input));
+        
+        Console.WriteLine(exception.Message);
+        
+        Assert.Equal("Negatives not allowed: -1", exception.Message);
     }
+
 }
