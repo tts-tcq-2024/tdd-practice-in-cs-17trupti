@@ -19,41 +19,34 @@ public class StringCalculator
     {
         if (numbers.StartsWith("//"))
         {
-            return GetNumbersWithCustomDelimiter(numbers);
+            return GetNumbersWithCustomDelimiters(numbers);
         }
         
         return numbers.Split(new[] { ',', '\n' }, StringSplitOptions.None);
     }
 
-    private IEnumerable<string> GetNumbersWithCustomDelimiter(string numbers)
+    private IEnumerable<string> GetNumbersWithCustomDelimiters(string numbers)
     {
         // Extract custom delimiters
         int delimiterEndIndex = numbers.IndexOf('\n');
         string delimiterPart = numbers.Substring(2, delimiterEndIndex - 2);
+        
+        // Extract delimiters using regex
+        var delimiters = new List<string> { ",", "\n" }; // Default delimiters
+        var matches = Regex.Matches(delimiterPart, @"\[(.*?)\]");
+        foreach (Match match in matches)
+        {
+            delimiters.Add(Regex.Escape(match.Groups[1].Value));
+        }
+        
+        // Extract numbers part
         string numberPart = numbers.Substring(delimiterEndIndex + 1);
 
-        // Handle multiple delimiters and delimiters of arbitrary length
-        string[] delimiters = ExtractDelimiters(delimiterPart);
-
-        // Create regex pattern to split input by multiple custom delimiters
-        string delimiterPattern = string.Join("|", delimiters.Select(d => Regex.Escape(d)));
+        // Join delimiters for regex pattern
+        string delimiterPattern = string.Join("|", delimiters);
+        
+        // Split input by custom delimiters
         return numberPart.Split(new[] { delimiterPattern }, StringSplitOptions.None);
-    }
-
-    private string[] ExtractDelimiters(string delimiterPart)
-    {
-        // If delimiters are enclosed in brackets, extract them
-        if (delimiterPart.StartsWith("[") && delimiterPart.EndsWith("]"))
-        {
-            return Regex.Matches(delimiterPart, @"\[(.*?)\]")
-                .Cast<Match>()
-                .Select(m => m.Groups[1].Value)
-                .ToArray();
-        }
-        else
-        {
-            return new[] { delimiterPart };
-        }
     }
 
     private int CalculateSum(IEnumerable<string> numbers)
@@ -77,7 +70,6 @@ public class StringCalculator
         {
             negativeNumbers.Add(parsedNum);
         }
-        
         return parsedNum;
     }
 
