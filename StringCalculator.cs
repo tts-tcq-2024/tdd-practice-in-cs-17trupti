@@ -77,6 +77,7 @@ public class StringCalculator
         {
             negativeNumbers.Add(parsedNum);
         }
+        
         return parsedNum;
     }
 
