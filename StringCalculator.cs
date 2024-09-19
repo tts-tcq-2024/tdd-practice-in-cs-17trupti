@@ -11,12 +11,9 @@ public class StringCalculator
             return 0;
         }
 
-        if (numbers.StartsWith("//"))
-        {
-            return CalculateSumWithCustomDelimiter(numbers);
-        }
-
-        return CalculateSum(numbers);
+        return numbers.StartsWith("//") 
+            ? CalculateSumWithCustomDelimiter(numbers) 
+            : CalculateSum(numbers);
     }
 
     private int CalculateSum(string numbers)
@@ -36,10 +33,12 @@ public class StringCalculator
 
     private int CalculateSumWithCustomDelimiter(string numbers)
     {
+        // Extract custom delimiter
         int delimiterEndIndex = numbers.IndexOf('\n');
         string delimiter = numbers.Substring(2, delimiterEndIndex - 2);
         string numberPart = numbers.Substring(delimiterEndIndex + 1);
 
+        // Split input by custom delimiter
         string[] numArray = numberPart.Split(new[] { delimiter }, StringSplitOptions.None);
         List<int> negativeNumbers = new List<int>();
 
