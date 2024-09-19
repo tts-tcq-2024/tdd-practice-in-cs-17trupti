@@ -58,7 +58,7 @@ public class StringCalculatorAddTests
 
        Assert.Equal(expectedResult, result);
     }
-/*
+
   [Fact]
     public void ExpectSumWithNewlineDelimiter()
     {
@@ -69,7 +69,7 @@ public class StringCalculatorAddTests
 
        Assert.Equal(expectedResult, result);
     }
-
+/*
     [Fact]
     public void ExpectSumWithCustomDelimiter()
     {
