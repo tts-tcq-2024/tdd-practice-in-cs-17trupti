@@ -11,38 +11,33 @@ public class StringCalculator
             return 0;
         }
 
-        return numbers.StartsWith("//") 
-            ? CalculateSumWithCustomDelimiter(numbers) 
-            : CalculateSum(numbers);
+        return CalculateSum(PrepareNumbers(numbers));
     }
 
-    private int CalculateSum(string numbers)
+    private IEnumerable<string> PrepareNumbers(string numbers)
     {
-        string[] numArray = numbers.Split(new[] { ',', '\n' }, StringSplitOptions.None);
-        List<int> negativeNumbers = new List<int>();
-
-        int sum = numArray
-            .Select(num => ParseNumber(num, negativeNumbers))
-            .Where(num => num <= 1000)
-            .Sum();
-
-        CheckForNegatives(negativeNumbers);
-
-        return sum;
+        if (numbers.StartsWith("//"))
+        {
+            return GetNumbersWithCustomDelimiter(numbers);
+        }
+        
+        return numbers.Split(new[] { ',', '\n' }, StringSplitOptions.None);
     }
 
-    private int CalculateSumWithCustomDelimiter(string numbers)
+    private IEnumerable<string> GetNumbersWithCustomDelimiter(string numbers)
     {
-        // Extract custom delimiter
         int delimiterEndIndex = numbers.IndexOf('\n');
         string delimiter = numbers.Substring(2, delimiterEndIndex - 2);
         string numberPart = numbers.Substring(delimiterEndIndex + 1);
 
-        // Split input by custom delimiter
-        string[] numArray = numberPart.Split(new[] { delimiter }, StringSplitOptions.None);
+        return numberPart.Split(new[] { delimiter }, StringSplitOptions.None);
+    }
+
+    private int CalculateSum(IEnumerable<string> numbers)
+    {
         List<int> negativeNumbers = new List<int>();
 
-        int sum = numArray
+        int sum = numbers
             .Select(num => ParseNumber(num, negativeNumbers))
             .Where(num => num <= 1000)
             .Sum();
@@ -59,6 +54,7 @@ public class StringCalculator
         {
             negativeNumbers.Add(parsedNum);
         }
+        
         return parsedNum;
     }
 
