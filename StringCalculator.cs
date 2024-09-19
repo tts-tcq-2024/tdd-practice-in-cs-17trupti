@@ -2,10 +2,6 @@ public class StringCalculator
 {
     public int Add(string numbers)
     {
-        if (string.IsNullOrEmpty(numbers))
-        {
-            return 0;
-        }
+        return -1; // This ensures the test fails because it's not the correct implementation.
     }
 }
- 
