@@ -11,12 +11,36 @@ public class StringCalculator
             return 0;
         }
 
+        if (numbers.StartsWith("//"))
+        {
+            return CalculateSumWithCustomDelimiter(numbers);
+        }
+
         return CalculateSum(numbers);
     }
 
     private int CalculateSum(string numbers)
     {
         string[] numArray = numbers.Split(new[] { ',', '\n' }, StringSplitOptions.None);
+        List<int> negativeNumbers = new List<int>();
+
+        int sum = numArray
+            .Select(num => ParseNumber(num, negativeNumbers))
+            .Where(num => num <= 1000)
+            .Sum();
+
+        CheckForNegatives(negativeNumbers);
+
+        return sum;
+    }
+
+    private int CalculateSumWithCustomDelimiter(string numbers)
+    {
+        int delimiterEndIndex = numbers.IndexOf('\n');
+        string delimiter = numbers.Substring(2, delimiterEndIndex - 2);
+        string numberPart = numbers.Substring(delimiterEndIndex + 1);
+
+        string[] numArray = numberPart.Split(new[] { delimiter }, StringSplitOptions.None);
         List<int> negativeNumbers = new List<int>();
 
         int sum = numArray
