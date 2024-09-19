@@ -2,12 +2,13 @@ public class StringCalculator
 {
     public int Add(string numbers)
     {
-        if (string.IsNullOrEmpty(numbers))
+        if (string.IsNullOrEmpty(numbers) || numbers == "0")
         {
             return 0;
         }
-        // This is a placeholder, to be further implemented in future tests
-        return -1;
+
+        return -1; // Placeholder for future logic.
     }
 }
+
 
