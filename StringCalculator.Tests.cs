@@ -80,5 +80,60 @@ public class StringCalculatorAddTests
 
        Assert.Equal(expectedResult, result);
     }
+
+    [Fact]
+    public void Add_ShouldReturnSingleNumber_WhenInputIsSingleNumber()
+    {
+        int expectedResult = 5;
+        string input = "5";
+        StringCalculator objUnderTest = new StringCalculator();
+        int result = objUnderTest.Add(input);
+
+        Assert.Equal(expectedResult, result);
+    }
     
+    [Fact]
+    public void Add_ShouldReturnSumWithMultipleCharacterCustomDelimiter_WhenInputHasMultipleCharacterDelimiter()
+    {
+        int expectedResult = 6;
+        string input = "//[***]\n1***2***3";
+        StringCalculator objUnderTest = new StringCalculator();
+        int result = objUnderTest.Add(input);
+        
+        Assert.Equal(expectedResult, result);
+    }
+    
+    [Fact]
+    public void Add_ShouldReturnSumWithMixedDelimiters_WhenInputHasMixedDelimiters()
+    {
+        int expectedResult = 6;
+        string input = "//;\n1;2\n3";
+        StringCalculator objUnderTest = new StringCalculator();
+        int result = objUnderTest.Add(input);
+
+        Assert.Equal(expectedResult, result);
+    }
+    
+    [Fact]
+    public void Add_ShouldReturnSumWithMultipleCustomDelimiters_WhenInputHasMultipleCustomDelimiters()
+    {
+        int expectedResult = 6;
+        string input = "//[;][%]\n1;2%3";
+        StringCalculator objUnderTest = new StringCalculator();
+        int result = objUnderTest.Add(input);
+
+        Assert.Equal(expectedResult, result);
+    }
+    
+    [Fact]
+    public void Add_ShouldThrowExceptionForNegativeNumbersWithCustomDelimiters_WhenInputContainsNegativeNumbersWithCustomDelimiter()
+    {
+        Assert.Throws<Exception>(() =>
+                                 {
+                                     string input = "//;\n-1;2";
+                                     StringCalculator objUnderTest = new StringCalculator();
+                                     objUnderTest.Add(input);
+                                 });
+    }
+
 }
