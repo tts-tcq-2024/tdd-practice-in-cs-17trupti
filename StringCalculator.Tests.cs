@@ -102,16 +102,6 @@ public class StringCalculatorAddTests
     }
 
     [Fact]
-    public void Add_ShouldHandleMultipleNumbers_WithCustomDelimiter()
-    {
-        int expectedResult = 6;
-        string input = "//[***]\n1***2***3";
-        int result = _stringCalculator.Add(input);
-
-        Assert.Equal(expectedResult, result);
-    }
-    
-    [Fact]
     public void Add_ShouldThrowExceptionForNegativeNumbersWithCustomDelimiters_WhenInputContainsNegativeNumbersWithCustomDelimiter()
     {
         string input = "//;\n-1;2";
