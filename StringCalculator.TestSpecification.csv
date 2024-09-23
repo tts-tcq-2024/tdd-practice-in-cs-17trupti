@@ -1,0 +1,12 @@
+Test No.,Testcase Name,Description,Input,Expected Output
+1,Add_ShouldReturnZero_WhenInputIsEmpty,Ensures that an empty string returns 0.,"""""",0
+2,Add_ShouldReturnZero_WhenInputIsSingleZero,Validates that a string containing a single zero returns 0.,"""0""",0
+3,Add_ShouldReturnSingleNumber_WhenInputIsSingleNumber,Ensures the method returns a single number when there is only one number in the input.,"""5""",5
+4,Add_ShouldReturnSumOfTwoNumbers_WhenInputHasTwoNumbersSeparatedByComma,Verifies that two numbers separated by a comma return their sum.,"""1,2""",3
+5,Add_ShouldReturnSumWithNewlineDelimiter_WhenInputHasNewlines,Ensures the method handles newlines between numbers correctly.,"""1\n2,3""",6
+6,Add_ShouldReturnSumWithCustomDelimiter_WhenInputHasCustomDelimiter,Tests the custom delimiter feature.,"""//;\n1;2""",3
+7,Add_ShouldThrowException_WhenInputContainsNegativeNumbers,"Ensures an exception is thrown when the input contains a negative number, with the correct error message.","""-1,2""","Exception: ""Negatives not allowed: -1"""
+8,Add_ShouldThrowExceptionForMultipleNegatives_WhenInputContainsMultipleNegativeNumbers,Verifies that multiple negative numbers in the input return all negatives in the exception message.,"""-1,-2""","Exception: ""Negatives not allowed: -1,-2"""
+9,Add_ShouldIgnoreNumbersGreaterThan1000_WhenInputContainsLargeNumbers,Tests that numbers greater than 1000 are ignored in the sum calculation.,"""1,1001""",1
+10,Add_ShouldThrowExceptionForNegativeNumbersWithCustomDelimiters_WhenInputContainsNegativeNumbersWithCustomDelimiter,"Ensures the custom delimiter works correctly when negative numbers are involved, throwing an exception.","""//;\n-1;2""","Exception: ""Negatives not allowed: -1"""
+11,Add_ShouldReturnSumWithUnknownAmountOfNumbers,Validates that the method can handle an unknown number of numbers.,"""1,2,3,4,5""",15
